@@ -8,18 +8,23 @@
   <link rel="icon" href="assets/logo-mark.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Caveat:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <script>
+    // Hide above-the-fold content until the GSAP intro runs (js/motion.js); never longer than 3s.
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.documentElement.classList.add("has-motion");
+      setTimeout(() => {
+        if (!document.documentElement.classList.contains("motion-ready")) document.documentElement.classList.remove("has-motion");
+      }, 3000);
+    }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <svg class="svg-defs" aria-hidden="true" focusable="false">
     <defs>
-      <filter id="rough" x="-5%" y="-20%" width="110%" height="140%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="4" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="7"/>
-      </filter>
       <symbol id="sparkle" viewBox="0 0 24 24">
         <path d="M12 0c1 8 4 11 12 12-8 1-11 4-12 12-1-8-4-11-12-12 8-1 11-4 12-12z"/>
       </symbol>
@@ -47,9 +52,6 @@
   <main id="main">
     <section class="hero">
       <div class="stars" data-count="90"></div>
-      <span class="streak" style="--c: var(--violet); --w: 260px; left: -110px; top: 5%"></span>
-      <span class="streak" style="--c: var(--magenta); --w: 200px; --h: 28px; right: 6%; top: 5%"></span>
-      <span class="streak" style="--c: var(--blue); --w: 170px; --h: 24px; right: -40px; top: 13%"></span>
 
       <div class="wrap">
         <div class="hero-copy">
@@ -64,7 +66,7 @@
 
         <div class="hero-scene" aria-hidden="true">
           <svg class="sparkle" style="--s: 34px; left: 8%; top: 4%"><use href="#sparkle"/></svg>
-          <svg class="sparkle sparkle--teal" style="--s: 26px; --d: 1.5s; right: 6%; top: 18%"><use href="#sparkle"/></svg>
+          <svg class="sparkle sparkle--pink" style="--s: 26px; --d: 1.5s; right: 6%; top: 18%"><use href="#sparkle"/></svg>
           <svg class="sparkle" style="--s: 18px; --d: 3s; left: 38%; top: 22%"><use href="#sparkle"/></svg>
           <img class="sunny" src="assets/mascots/sunny-trim.png" alt="" width="720" height="443">
           <img class="nilly" src="assets/mascots/nilly-trim.png" alt="" width="640" height="833">
@@ -72,37 +74,25 @@
       </div>
 
       <svg class="hill" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true">
+        <path class="hill-back" d="M0 40C300 70 560 54 820 30c260-24 440-10 620 18v92H0z"/>
         <path d="M0 62C240 14 520 0 760 20c280 24 480 70 680 50v70H0z"/>
       </svg>
     </section>
 
-    <section class="section about" id="about">
-      <div class="wrap">
-        <p class="eyebrow">About</p>
-        <h2>The sky is for everyone</h2>
-        <!-- TODO: draft copy based on the brand report. Rewrite in your own words. -->
-        <div class="about-copy">
-          <p>Egg Nebula began as a quiet place to look up. When everyday pressure felt heavy, the sky made it feel a little smaller. We wanted to hand that same feeling to someone else.</p>
-          <p>So we explain the night sky the way a friend would: in plain words, with drawings and stories, from where we stand in the Philippines.</p>
+    <!-- With motion on, this section pins while its paragraphs play one at a time,
+         then the Lab section slides up over it (see .has-motion rules in styles.css). -->
+    <section class="about" id="about">
+      <div class="about-pin">
+        <div class="wrap">
+          <p class="eyebrow">About</p>
+          <h2>The sky is for everyone</h2>
+          <!-- TODO: draft copy based on the brand report. Rewrite in your own words. -->
+          <div class="about-story">
+            <p>Egg Nebula began as a quiet place to look up. When everyday pressure felt heavy, the sky made it feel a little smaller. We wanted to hand that same feeling to someone else.</p>
+            <p>So we explain the night sky the way a friend would: in plain words, with drawings and stories, from where we stand in the Philippines.</p>
+            <blockquote>You don't need a telescope or a science degree. Start with the sky above your own roof tonight, and we'll explain what you're seeing.</blockquote>
+          </div>
         </div>
-        <blockquote>
-          You don't need a telescope or a science degree. Start with the sky above your own roof tonight, and we'll explain what you're seeing.
-        </blockquote>
-
-        <ul class="values">
-          <li>
-            <h3>Accuracy before awe</h3>
-            <p>We check our facts and say so when science doesn't know yet. The real sky is astonishing enough.</p>
-          </li>
-          <li>
-            <h3>No dumb questions</h3>
-            <p>Every level of knowledge is welcome here, including none. Nobody is late or behind.</p>
-          </li>
-          <li>
-            <h3>Rooted here</h3>
-            <p>The sky as seen from the Philippines, with the stories Filipinos have told about it.</p>
-          </li>
-        </ul>
       </div>
     </section>
 
@@ -119,14 +109,14 @@
           <a class="card" href="https://lab.eggnebula.com/planet-sizes" target="_blank" rel="noopener">
             <div class="card-art">
               <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-                <rect width="320" height="200" fill="#17094a"/>
-                <g filter="url(#rough)">
-                  <circle cx="92" cy="104" r="62" fill="#f5c95c"/>
-                  <path d="M34 92c36 10 80 12 116 2M38 122c34 8 76 8 108 0" stroke="#e0a94a" stroke-width="7" fill="none" stroke-linecap="round"/>
-                  <ellipse cx="204" cy="112" rx="56" ry="12" fill="none" stroke="#a44d88" stroke-width="6" transform="rotate(-14 204 112)"/>
+                <rect width="320" height="200" fill="#2a163f"/>
+                <g>
+                  <circle cx="92" cy="104" r="62" fill="#a34e8b"/>
+                  <path d="M34 92c36 10 80 12 116 2M38 122c34 8 76 8 108 0" stroke="#8c3f77" stroke-width="7" fill="none" stroke-linecap="round"/>
+                  <ellipse cx="204" cy="112" rx="56" ry="12" fill="none" stroke="#702dbe" stroke-width="6" transform="rotate(-14 204 112)"/>
                   <circle cx="204" cy="112" r="34" fill="#e5deee"/>
-                  <circle cx="268" cy="126" r="14" fill="#4a9e8c"/>
-                  <circle cx="296" cy="134" r="7" fill="#2f80c4"/>
+                  <circle cx="268" cy="126" r="14" fill="#4e9aa3"/>
+                  <circle cx="296" cy="134" r="7" fill="#2d7ebe"/>
                 </g>
               </svg>
             </div>
@@ -140,9 +130,9 @@
           <div class="card card--soon">
             <div class="card-art">
               <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-                <rect width="320" height="200" fill="#17094a"/>
-                <path d="M48 150l44-64 52 22 38-60 56 30 36-42" fill="none" stroke="#a44d88" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
-                <g fill="#e5deee">
+                <rect width="320" height="200" fill="#2a163f"/>
+                <path d="M48 150l44-64 52 22 38-60 56 30 36-42" fill="none" stroke="#a34e8b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+                <g fill="#fbf4d3">
                   <circle cx="48" cy="150" r="6"/><circle cx="92" cy="86" r="8"/><circle cx="144" cy="108" r="5"/>
                   <circle cx="182" cy="48" r="7"/><circle cx="238" cy="78" r="5"/><circle cx="274" cy="36" r="8"/>
                 </g>
@@ -158,48 +148,91 @@
       </div>
     </section>
 
-    <section class="section" id="resources">
+    <section class="section resources-home" id="resources">
       <div class="wrap">
         <div class="section-head">
           <p class="eyebrow">Resources</p>
           <h2>Start here, start anywhere</h2>
           <p class="lead">Illustrated guides to the night sky. Pick whichever one you're curious about.</p>
+          <p class="section-foot"><a class="btn btn--ghost" href="resources.html">See all resources</a></p>
         </div>
 
-        <div class="cards cards--3">
-          <a class="card" href="resources.html#night-sky">
-            <div class="card-art"><img src="assets/knowing-the-night-sky/things-you-can-see.jpg" alt="" loading="lazy" width="1582" height="2048"></div>
-            <div class="card-body">
-              <h3>Things you can see in the night sky</h3>
-              <p>Twelve things you can spot with just your eyes.</p>
-              <span class="card-link">Read the guide</span>
-            </div>
-          </a>
-          <a class="card" href="resources.html#seasonal-skies">
-            <div class="card-art"><img src="assets/knowing-the-night-sky/seasonal-skies.jpg" alt="" loading="lazy" width="1448" height="2048"></div>
-            <div class="card-body">
-              <h3>Seasonal skies</h3>
-              <p>Why Orion shows up in December and Scorpius in June.</p>
-              <span class="card-link">Read the guide</span>
-            </div>
-          </a>
-          <a class="card" href="resources.html#zodiac">
-            <div class="card-art"><img src="assets/zodiac/1.jpg" alt="" loading="lazy" width="2048" height="2048" style="object-position: center"></div>
-            <div class="card-body">
-              <h3>The zodiacal constellations</h3>
-              <p>The constellations along the Sun's path, and their neighbours.</p>
-              <span class="card-link">See the series</span>
-            </div>
-          </a>
+        <!-- Card stack: arrows (js/main.js) and autoplay step through it; js/motion.js animates each swap. -->
+        <div class="swap-area">
+          <div class="card-swap" role="list" aria-label="Featured guides">
+            <a class="swap-card" role="listitem" style="--i: 0" href="resources.html#things-you-can-see">
+              <span class="swap-card-inner">
+                <span class="swap-card-bar">Knowing the night sky</span>
+                <img src="assets/knowing-the-night-sky/things-you-can-see.jpg" alt="" loading="lazy" width="1582" height="2048">
+                <span class="swap-card-body">
+                  <span class="swap-card-title">Things you can see in the night sky</span>
+                  <span class="swap-card-text">Twelve things you can spot with just your eyes.</span>
+                </span>
+              </span>
+            </a>
+            <a class="swap-card" role="listitem" style="--i: 1" href="resources.html#seasonal-skies">
+              <span class="swap-card-inner">
+                <span class="swap-card-bar">Knowing the night sky</span>
+                <img src="assets/knowing-the-night-sky/seasonal-skies.jpg" alt="" loading="lazy" width="1448" height="2048">
+                <span class="swap-card-body">
+                  <span class="swap-card-title">Seasonal skies</span>
+                  <span class="swap-card-text">Why Orion shows up in December and Scorpius in June.</span>
+                </span>
+              </span>
+            </a>
+            <a class="swap-card" role="listitem" style="--i: 2" href="resources.html#zodiac">
+              <span class="swap-card-inner">
+                <span class="swap-card-bar">Zodiacal constellations</span>
+                <img src="assets/zodiac/1.jpg" alt="" loading="lazy" width="2048" height="2048">
+                <span class="swap-card-body">
+                  <span class="swap-card-title">The zodiacal constellations</span>
+                  <span class="swap-card-text">A ten-part walk along the Sun's path through the sky.</span>
+                </span>
+              </span>
+            </a>
+            <a class="swap-card" role="listitem" style="--i: 3" href="resources.html#north-star">
+              <span class="swap-card-inner">
+                <span class="swap-card-bar">Knowing the night sky</span>
+                <img src="assets/knowing-the-night-sky/north-star.jpg" alt="" loading="lazy" width="1448" height="2048">
+                <span class="swap-card-body">
+                  <span class="swap-card-title">The North Star</span>
+                  <span class="swap-card-text">Why Polaris is our north star for now, and not forever.</span>
+                </span>
+              </span>
+            </a>
+            <a class="swap-card" role="listitem" style="--i: 4" href="resources.html#balatik-moroporo">
+              <span class="swap-card-inner">
+                <span class="swap-card-bar">Philippine ethnoastronomy</span>
+                <img src="assets/ethnoastronomy/1.jpg" alt="" loading="lazy" width="1448" height="2048">
+                <span class="swap-card-body">
+                  <span class="swap-card-title">Balatik &amp; Moroporo</span>
+                  <span class="swap-card-text">Orion as a pig trap, and the many faces of the Pleiades.</span>
+                </span>
+              </span>
+            </a>
+            <a class="swap-card" role="listitem" style="--i: 5" href="resources.html#bubu-mamahi-uttara">
+              <span class="swap-card-inner">
+                <span class="swap-card-bar">Philippine ethnoastronomy</span>
+                <img src="assets/ethnoastronomy/2.jpg" alt="" loading="lazy" width="1448" height="2048">
+                <span class="swap-card-body">
+                  <span class="swap-card-title">Bubu &amp; Mamahi Uttara</span>
+                  <span class="swap-card-text">How the Sama Dilaut read the Big Dipper for fishing.</span>
+                </span>
+              </span>
+            </a>
+          </div>
+          <div class="swap-controls">
+            <button class="swap-arrow" type="button" data-swap="-1" aria-label="Previous guide">←</button>
+            <span class="swap-count" aria-live="polite"></span>
+            <button class="swap-arrow" type="button" data-swap="1" aria-label="Next guide">→</button>
+          </div>
         </div>
-
-        <p class="section-foot"><a class="btn btn--ghost" href="resources.html">See all resources</a></p>
       </div>
     </section>
 
     <section class="section newsletter" id="newsletter">
       <div class="stars" data-count="40"></div>
-      <svg class="sparkle sparkle--teal" style="--s: 30px; left: 12%; top: 22%" aria-hidden="true"><use href="#sparkle"/></svg>
+      <svg class="sparkle sparkle--pink" style="--s: 30px; left: 12%; top: 22%" aria-hidden="true"><use href="#sparkle"/></svg>
       <svg class="sparkle" style="--s: 22px; --d: 2s; right: 14%; top: 14%" aria-hidden="true"><use href="#sparkle"/></svg>
 
       <div class="wrap">
@@ -217,23 +250,27 @@
             <label for="nl-email">Email</label>
             <input id="nl-email" name="email" type="email" autocomplete="email" required>
           </div>
+          <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
           <button class="btn" type="submit">Subscribe</button>
           <p class="form-note" role="status" aria-live="polite"></p>
         </form>
       </div>
 
-      <div class="ground" aria-hidden="true">
+      <div class="ground">
         <img class="nilly" src="assets/mascots/nilly-trim.png" alt="" loading="lazy" width="640" height="833">
         <div class="stargazers">
           <img class="sunny" src="assets/mascots/sunny-trim.png" alt="" loading="lazy" width="720" height="443">
-          <svg class="telescope" viewBox="0 0 160 180">
+          <!-- Drag (or use arrow keys) to aim the tube; js/main.js. -->
+          <svg class="telescope" viewBox="0 0 160 180" role="slider" tabindex="0" aria-label="Telescope angle"
+               aria-valuemin="5" aria-valuemax="70" aria-valuenow="30" aria-valuetext="30 degrees up">
+            <title>Drag to aim the telescope</title>
             <g stroke="#e5deee" stroke-width="7" stroke-linecap="round">
               <path d="M82 92L48 174M82 92v82M82 92l34 82"/>
             </g>
-            <g transform="rotate(-30 82 84)" filter="url(#rough)">
+            <g class="telescope-tube">
               <rect x="22" y="70" width="108" height="28" rx="9" fill="#e5deee"/>
-              <rect x="118" y="62" width="30" height="44" rx="8" fill="#a44d88"/>
-              <rect x="8" y="76" width="18" height="16" rx="5" fill="#6f2dbd"/>
+              <rect x="118" y="62" width="30" height="44" rx="8" fill="#a34e8b"/>
+              <rect x="8" y="76" width="18" height="16" rx="5" fill="#702dbe"/>
             </g>
           </svg>
         </div>
@@ -265,6 +302,10 @@
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/motion.js" defer></script>
 </body>
 </html>
