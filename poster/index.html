@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Egg Nebula · A0 Poster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+  /* A0 portrait: 841 x 1189 mm. Everything is sized in mm so it prints 1:1.
+     Print: File > Print > Save as PDF, paper size A0 (or custom 841x1189 mm), margins None, background graphics ON. */
+  @page { size: 841mm 1189mm; margin: 0; }
+
+  :root {
+    --en-dark: #100b27;
+    --en-primary: #a34e8b;
+    --en-secondary: #702dbe;
+    --en-teal: #4e9aa3;
+    --en-gray: #e5deee;
+    --en-yellow: #fbf4d3;
+    --en-blue: #2d7ebe;
+    --surface: color-mix(in srgb, var(--en-dark), var(--en-secondary) 16%);
+    --pink-text: color-mix(in srgb, var(--en-primary), var(--en-gray) 40%);
+    --font: "Lexend", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --hand: "Caveat", "Lexend", cursive;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: #000; }
+  body { background: var(--en-dark); }
+  img { display: block; }
+
+  .poster {
+    width: 841mm;
+    height: 1189mm;
+    background: var(--en-dark);
+    color: var(--en-gray);
+    font-family: var(--font);
+    font-weight: 300;
+    font-size: 11.4mm;
+    line-height: 1.4;
+    padding: 20mm 25mm 18mm;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    gap: 11mm;
+    overflow: hidden;
+    position: relative;
+    transform-origin: 0 0;
+  }
+
+  /* ---------- Header ---------- */
+  .header {
+    display: grid;
+    grid-template-columns: 100mm 1fr 100mm;
+    gap: 14mm;
+    align-items: center;
+  }
+  .header .mark { width: 100mm; }
+  .header .mascots { display: flex; align-items: flex-end; justify-content: flex-end; gap: 4mm; }
+  .header .mascots img:first-child { width: 42mm; }
+  .header .mascots img:last-child { width: 54mm; }
+  .kicker {
+    font-family: var(--hand);
+    font-size: 14mm;
+    color: var(--en-yellow);
+    line-height: 1;
+    margin-bottom: 3mm;
+  }
+  h1 {
+    font-weight: 800;
+    font-size: 29mm;
+    line-height: 1.06;
+    color: #fff;
+    letter-spacing: -0.5mm;
+  }
+  h1 em { font-style: normal; color: var(--pink-text); }
+  .subtitle {
+    margin-top: 5mm;
+    font-size: 13.5mm;
+    font-weight: 400;
+    color: var(--en-yellow);
+    line-height: 1.2;
+  }
+  .byline {
+    margin-top: 5mm;
+    font-size: 9.5mm;
+    color: var(--en-gray);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3mm 12mm;
+  }
+  .byline b { font-weight: 600; color: #fff; }
+
+  /* ---------- Timeline ---------- */
+  .timeline {
+    background: var(--surface);
+    border-radius: 6mm;
+    padding: 7mm 14mm 8mm;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    position: relative;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 14mm; right: 14mm;
+    top: 15.5mm;
+    height: 2mm;
+    background: var(--en-primary);
+  }
+  .tl-step { position: relative; padding-top: 15mm; padding-right: 6mm; }
+  .tl-step::before {
+    content: "";
+    position: absolute;
+    top: 1.5mm; left: 0;
+    width: 10mm; height: 10mm;
+    border-radius: 50%;
+    background: var(--en-yellow);
+    border: 2.5mm solid var(--en-dark);
+  }
+  .tl-step.next::before { background: var(--en-dark); border-color: var(--en-teal); }
+  .tl-when { font-weight: 800; font-size: 10.5mm; color: var(--en-yellow); line-height: 1.1; }
+  .tl-what { font-size: 9.4mm; line-height: 1.3; margin-top: 1mm; }
+
+  /* ---------- Columns ---------- */
+  .cols {
+    display: grid;
+    grid-template-columns: 234mm 290mm 234mm;
+    gap: 16.5mm;
+    min-height: 0;
+  }
+  .col { display: flex; flex-direction: column; gap: 9mm; min-height: 0; }
+
+  .card {
+    background: var(--surface);
+    border-radius: 6mm;
+    padding: 8mm 10mm 9mm;
+  }
+  .card.flush { background: none; padding: 0; }
+
+  h2 {
+    font-weight: 800;
+    font-size: 16.5mm;
+    line-height: 1.05;
+    color: var(--pink-text);
+    margin-bottom: 5mm;
+    display: flex;
+    align-items: center;
+    gap: 5mm;
+  }
+  h2::before {
+    content: "";
+    width: 3.5mm; height: 13mm;
+    background: var(--en-teal);
+    border-radius: 2mm;
+    flex: none;
+  }
+  h3 {
+    font-weight: 600;
+    font-size: 11.5mm;
+    color: var(--en-yellow);
+    margin: 6mm 0 3mm;
+  }
+  p + p { margin-top: 3.5mm; }
+  strong { font-weight: 600; color: #fff; }
+
+  ul { list-style: none; }
+  li { position: relative; padding-left: 9mm; }
+  li + li { margin-top: 3mm; }
+  li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 4mm;
+    width: 3.4mm; height: 3.4mm;
+    background: var(--en-teal);
+    border-radius: 50%;
+  }
+  ol { list-style: none; counter-reset: n; }
+  ol li { padding-left: 14mm; }
+  ol li::before {
+    counter-increment: n;
+    content: counter(n);
+    background: var(--en-primary);
+    color: #fff;
+    width: 9mm; height: 9mm;
+    top: 1.8mm;
+    border-radius: 50%;
+    font-weight: 600;
+    font-size: 6.5mm;
+    line-height: 9mm;
+    text-align: center;
+  }
+
+  /* framework */
+  .fw { display: grid; gap: 4mm; }
+  .fw div { display: grid; grid-template-columns: 68mm 1fr; gap: 4mm; align-items: baseline; }
+  .fw b { color: var(--en-yellow); font-weight: 600; }
+  .fw span { font-size: 10.6mm; line-height: 1.3; }
+
+  /* gallery */
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6mm; }
+  .figure img { width: 100%; height: auto; border-radius: 3mm; background: var(--en-dark); }
+  .figure figcaption { font-size: 8.6mm; line-height: 1.25; margin-top: 2.5mm; color: var(--en-gray); }
+  .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6mm 8mm; }
+  .grid2 .figure img { aspect-ratio: 16/10; object-fit: cover; }
+  .grid2 .figure figcaption b { display: block; font-size: 10.5mm; font-weight: 600; color: var(--en-yellow); }
+
+  .tag {
+    display: inline-block;
+    font-size: 8mm;
+    font-weight: 600;
+    background: var(--en-teal);
+    color: var(--en-dark);
+    border-radius: 100mm;
+    padding: 0.5mm 6mm;
+    margin-left: auto;
+  }
+  .tag.soon { background: var(--en-yellow); }
+
+  .sound {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3mm;
+  }
+  .sound p { font-size: 10.5mm; }
+
+  /* stats */
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+  .stat {
+    background: var(--en-dark);
+    border-radius: 4mm;
+    padding: 5mm 6mm 5mm;
+  }
+  .stat .n { font-weight: 800; font-size: 24mm; line-height: 1; color: var(--en-yellow); }
+  .stat .l { font-size: 9mm; line-height: 1.25; margin-top: 2mm; }
+
+  .quote {
+    font-family: var(--hand);
+    font-size: 15mm;
+    line-height: 1.15;
+    color: var(--en-yellow);
+    border-left: 3mm solid var(--en-primary);
+    padding-left: 8mm;
+    margin-top: 8mm;
+  }
+
+  /* placeholders you still need to fill in */
+  .ph {
+    outline: 0.7mm dashed var(--en-yellow);
+    outline-offset: 1.2mm;
+    color: var(--en-yellow);
+    border-radius: 1mm;
+  }
+
+  /* ---------- Footer ---------- */
+  .footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 62mm;
+    gap: 16mm;
+    align-items: start;
+    border-top: 1.2mm solid var(--en-primary);
+    padding-top: 9mm;
+    font-size: 8.4mm;
+    line-height: 1.35;
+  }
+  .footer h4 { font-size: 10.5mm; font-weight: 800; color: var(--pink-text); margin-bottom: 3mm; }
+  .footer li { padding-left: 6mm; }
+  .footer li + li { margin-top: 1.5mm; }
+  .footer li::before { top: 3.2mm; width: 2.4mm; height: 2.4mm; }
+  .qr { text-align: center; font-size: 7.5mm; line-height: 1.2; }
+  .qr .box {
+    width: 62mm; height: 62mm;
+    background: var(--en-gray);
+    color: var(--en-dark);
+    display: grid; place-items: center;
+    font-weight: 600; font-size: 7mm;
+    border-radius: 3mm;
+    margin-bottom: 2mm;
+  }
+
+  @media screen {
+    html { background: #000; }
+  }
+  @media print {
+    html, body { background: var(--en-dark); }
+    .poster { transform: none !important; }
+  }
+</style>
+</head>
+<body>
+<main class="poster" id="poster">
+
+  <!-- HEADER -->
+  <header class="header">
+    <img class="mark" src="../assets/logo-mark.png" alt="Egg Nebula logo">
+    <div>
+      <div class="kicker">astronomy, art, eggstraordinary stuff</div>
+      <h1>Egg Nebula: Combining <em>Art, Technology</em> and <em>Open Data</em> for Creative Science Communication</h1>
+      <div class="subtitle">Bringing the stars closer to Filipinos through art and digital storytelling</div>
+      <div class="byline">
+        <span><b class="ph">[Rheanne Full Name]</b></span>
+        <span class="ph">[Affiliation]</span>
+        <span>lab.eggnebula.com</span>
+        <span>facebook.com/eggnebula</span>
+        <span class="ph">[email]</span>
+      </div>
+    </div>
+    <div class="mascots"><img src="../assets/mascots/nilly-trim.png" alt="Nilly, an Egg Nebula mascot"><img src="../assets/mascots/sunny-trim.png" alt="Sunny, an Egg Nebula mascot"></div>
+  </header>
+
+  <!-- TIMELINE -->
+  <section class="timeline" aria-label="Timeline">
+    <div class="tl-step"><div class="tl-when">2019</div><div class="tl-what">An illustrated astronomy page begins on Facebook</div></div>
+    <div class="tl-step"><div class="tl-when">2020</div><div class="tl-what">Free astronomy calendar and illustrated guide series</div></div>
+    <div class="tl-step"><div class="tl-when">Website</div><div class="tl-what">Guides on the web, explained in plain words</div></div>
+    <div class="tl-step"><div class="tl-when">Interactive lab</div><div class="tl-what">Games and apps built on open data</div></div>
+    <div class="tl-step next"><div class="tl-when">Next: sound</div><div class="tl-what">Sonification, turning images into music</div></div>
+  </section>
+
+  <!-- COLUMNS -->
+  <div class="cols">
+
+    <!-- COLUMN 1 -->
+    <div class="col">
+      <section class="card">
+        <h2>Introduction</h2>
+        <p>Astronomy is often communicated through jargon, formal talks and papers. That leaves out many people who are curious but never get a way in.</p>
+        <p>Egg Nebula began in 2019 as <strong>a quiet place to look up</strong>. When everyday pressure felt heavy, the sky made it feel a little smaller. The project sets out to hand that feeling to someone else.</p>
+        <p>It explains the night sky <strong>the way a friend would</strong>: in plain words, with drawings and stories, from where we stand in the Philippines.</p>
+        <p>What began as hand-drawn guides on Facebook, now followed by 4.6K people, has grown into a website and an interactive lab.</p>
+      </section>
+
+      <section class="card">
+        <h2>Objectives</h2>
+        <ol>
+          <li>Show that <strong>creativity</strong> is a valid, effective way to communicate astronomy.</li>
+          <li>Combine <strong>art, storytelling, technology and open data</strong>.</li>
+          <li>Bring in other fields, including <strong>music</strong> (sonification) and game design.</li>
+          <li>Share an <strong>open approach</strong> that other communicators can adapt.</li>
+        </ol>
+      </section>
+
+      <section class="card">
+        <h2>Methods / Approach</h2>
+        <div class="fw">
+          <div><b>Art</b><span>Hand-drawn infographics and two mascots, Nilly and Sunny</span></div>
+          <div><b>Story</b><span>Myths, Filipino sky knowledge and personal hooks</span></div>
+          <div><b>Technology</b><span>Website and browser apps: no download, no sign-in</span></div>
+          <div><b>Play</b><span>Games that make scale and data intuitive</span></div>
+          <div><b>Sound</b><span>Images turned into music</span></div>
+          <div><b>Open data</b><span>NASA imagery and public datasets, credited</span></div>
+          <div><b>Open sharing</b><span>Free guides, calendar and apps for anyone</span></div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- COLUMN 2 -->
+    <div class="col">
+      <section class="card">
+        <h2>Showcase: Art</h2>
+        <p style="font-size:10.6mm">A library of hand-drawn guides, from what you can see with your eyes to Philippine ethnoastronomy.</p>
+        <div class="grid3" style="margin-top:7mm">
+          <figure class="figure"><img src="../assets/knowing-the-night-sky/things-you-can-see.jpg" alt="What can you see in the night sky"><figcaption>What can you see in the night sky?</figcaption></figure>
+          <figure class="figure"><img src="../assets/knowing-the-night-sky/north-star.jpg" alt="The North Star"><figcaption>The North Star and precession</figcaption></figure>
+          <figure class="figure"><img src="../assets/knowing-the-night-sky/seasonal-skies.jpg" alt="Seasonal skies"><figcaption>Seasonal skies</figcaption></figure>
+          <figure class="figure"><img src="../assets/ethnoastronomy/1.jpg" alt="Balatik and Moroporo"><figcaption>Balatik (Orion) &amp; Moroporo (Pleiades)</figcaption></figure>
+          <figure class="figure"><img src="../assets/ethnoastronomy/2.jpg" alt="Philippine ethnoastronomy part 2"><figcaption>Philippine ethnoastronomy #2</figcaption></figure>
+          <figure class="figure"><img src="../assets/zodiac/1.jpg" alt="Zodiacal constellations"><figcaption>Zodiacal constellations, a 10-part series</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Showcase: Play</h2>
+        <p style="font-size:10.6mm">The Egg Nebula Lab: small interactive experiments for getting a feel for space, built on NASA open data.</p>
+        <div class="grid2" style="margin-top:7mm">
+          <figure class="figure"><img src="img/planet-sizes.webp" alt="Planet Sizes"><figcaption><b>Planet Sizes</b>A guessing game with a leaderboard</figcaption></figure>
+          <figure class="figure"><img src="img/cosmic-scale.webp" alt="Cosmic Scale"><figcaption><b>Cosmic Scale</b>The Moon, planets and Sun to scale</figcaption></figure>
+          <figure class="figure"><img src="img/cosmic-address.webp" alt="Cosmic Address"><figcaption><b>Cosmic Address</b>Zoom out from your own city</figcaption></figure>
+          <figure class="figure"><img src="img/birth-star.webp" alt="Birth Star"><figcaption><b>Birth Star</b>The star whose light left it the year you were born</figcaption></figure>
+          <figure class="figure"><img src="img/orbital-pomodoro.webp" alt="Orbital Pomodoro"><figcaption><b>Orbital Pomodoro</b>A focus timer with real orbits</figcaption></figure>
+          <figure class="figure" style="background:var(--en-dark);border-radius:3mm;padding:8mm;display:grid;align-content:center">
+            <div><b style="font-size:10.5mm;font-weight:600;color:var(--en-yellow);display:block">Universe Lofi</b><span class="tag soon" style="margin:2mm 0 0;white-space:nowrap">in progress</span></div>
+            <div style="font-size:9mm;line-height:1.3;margin-top:3mm">Sonification: astronomical images turned into music.</div>
+          </figure>
+        </div>
+      </section>
+    </div>
+
+    <!-- COLUMN 3 -->
+    <div class="col">
+      <section class="card">
+        <h2>Results / Findings</h2>
+        <div class="stats">
+          <div class="stat"><div class="n">4.6K</div><div class="l">followers on Facebook</div></div>
+          <div class="stat"><div class="n">10</div><div class="l">part zodiac constellation series</div></div>
+          <div class="stat"><div class="n">5</div><div class="l">interactive lab apps</div></div>
+          <div class="stat"><div class="n ph" style="display:inline-block">[ # ]</div><div class="l ph" style="margin-top:3mm">[lab visitors, plays or sign-ups]</div></div>
+        </div>
+        <p class="ph" style="margin-top:7mm;font-size:9.5mm">[Add a quote or feedback from a reader or player, optional]</p>
+      </section>
+
+      <section class="card">
+        <h2>Discussion</h2>
+        <ul>
+          <li><strong>Mascots, hand-drawn style and humor</strong> make astronomy feel like it comes from a friend, not an institution.</li>
+          <li><strong>Personal hooks and play</strong>, such as your city or your birth year, make large numbers easy to grasp.</li>
+          <li><strong>Local knowledge</strong> like Philippine ethnoastronomy shows astronomy is a shared human story, not only a Western one.</li>
+          <li><strong>Open data</strong> lets one creator build a whole platform.</li>
+        </ul>
+        <h3>Limitations</h3>
+        <p style="font-size:11mm">Audience measurement is still informal, and most content is in English.</p>
+      </section>
+
+      <section class="card">
+        <h2>Conclusion</h2>
+        <ol>
+          <li>Creative science communication <strong>complements</strong> academic outreach.</li>
+          <li>Art, technology and open data let a <strong>single creator</strong> build an engaging platform.</li>
+          <li>Working across fields reaches <strong>new audiences</strong>.</li>
+        </ol>
+        <h3>Next steps</h3>
+        <p style="font-size:11mm">More sonification, Filipino-language versions, resources for educators and collaborations.</p>
+      </section>
+
+      <div class="quote" style="font-size:12.5mm;margin-top:2mm">"Even before the colonizers came, various Filipino cultures already had their own constellations." <span style="font-size:9mm;font-family:var(--font);font-weight:300;color:var(--en-gray)">From the Egg Nebula ethnoastronomy guide</span></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div>
+      <h4>References</h4>
+      <ul>
+        <li>NASA open data and imagery, nasa.gov <span class="ph">[add specific links]</span></li>
+        <li><span class="ph">[Ethnoastronomy sources for Balatik and Moroporo]</span></li>
+        <li><span class="ph">[Sonification references]</span></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Acknowledgments</h4>
+      <p><span class="ph">[Mentors, collaborators, testers, conference or funder]</span> NASA for open imagery and data, and the Egg Nebula community.</p>
+    </div>
+    <div class="qr">
+      <div class="box ph">QR code</div>
+      lab.eggnebula.com
+    </div>
+  </footer>
+</main>
+
+<script>
+  // On screen only: shrink the A0 sheet to fit the window so you can see all of it. Printing is unaffected.
+  (function () {
+    var p = document.getElementById('poster');
+    function fit() {
+      if (matchMedia('print').matches) { p.style.transform = ''; document.body.style.height = ''; return; }
+      var s = window.innerWidth / p.offsetWidth;
+      p.style.transform = 'scale(' + s + ')';
+      document.body.style.height = (p.offsetHeight * s) + 'px';
+      document.body.style.overflowX = 'hidden';
+    }
+    window.addEventListener('resize', fit);
+    window.addEventListener('beforeprint', function () { p.style.transform = ''; });
+    window.addEventListener('afterprint', fit);
+    fit();
+  })();
+</script>
+</body>
+</html>
