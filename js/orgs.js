@@ -123,7 +123,7 @@
       const data = await res.json();
       if (data.result !== "success") throw new Error(data.error || "rejected");
       form.reset();
-      note.textContent = "Thank you! We'll review it and add it to the directory.";
+      note.textContent = "Thank you! It will be reviewed and added to the directory.";
     } catch {
       note.textContent = "That didn't go through. Please try again in a bit.";
     } finally {

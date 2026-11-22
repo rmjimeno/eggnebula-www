@@ -27,7 +27,7 @@
       const data = await res.json();
       if (data.result !== "success") throw new Error(data.error || "rejected");
       form.reset();
-      note.textContent = "Thanks! Your message is in. We'll get back to you soon.";
+      note.textContent = "Thanks! Your message is in. A reply is on its way soon.";
     } catch {
       note.textContent = "That didn't go through. Please try again in a bit.";
     } finally {
