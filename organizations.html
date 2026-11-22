@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Organizations · Egg Nebula</title>
+  <meta name="description" content="A directory of astronomy and space organizations in the Philippines: agencies, observatories, clubs and student groups, with a map.">
+  <link rel="icon" href="assets/logo-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/orgs.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <svg class="svg-defs" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="sparkle" viewBox="0 0 24 24">
+        <path d="M12 0c1 8 4 11 12 12-8 1-11 4-12 12-1-8-4-11-12-12 8-1 11-4 12-12z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Egg Nebula, home">
+        <img src="assets/logo-mark.png" alt="" width="480" height="309">
+        <span>Egg Nebula</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#lab">Lab</a></li>
+          <li class="has-sub">
+            <a href="resources.html" aria-current="page">Resources</a>
+            <ul class="sub">
+              <li><a href="resources.html">Illustrated guides</a></li>
+              <li><a href="organizations.html" aria-current="page">Organizations</a></li>
+            </ul>
+          </li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head">
+      <div class="stars" data-count="70"></div>
+      <div class="wrap">
+        <p class="eyebrow"><a href="resources.html">Resources</a></p>
+        <h1>Astronomy &amp; space organizations in the Philippines</h1>
+        <p class="lead">Agencies, observatories, clubs and student groups. Find people to look up with, near you.</p>
+      </div>
+    </section>
+
+    <section class="orgs">
+      <div class="wrap">
+        <p class="orgs-note">This is a starter list built from public sources. Details haven't been confirmed with each group yet, so check with them before you travel. Know a group that's missing, or something that's out of date? Use the button below the list.</p>
+
+        <div class="orgs-controls">
+          <label class="orgs-search">
+            <span class="sr-only">Search organizations</span>
+            <input id="org-search" type="search" placeholder="Search by name, place or activity" autocomplete="off">
+          </label>
+          <div class="chips" id="org-filters" role="group" aria-label="Filter by type"></div>
+        </div>
+
+        <p class="orgs-count" id="org-count" aria-live="polite"></p>
+
+        <div class="orgs-layout">
+          <div class="orgs-map-wrap">
+            <div id="org-map" role="region" aria-label="Map of organizations"></div>
+            <p class="map-foot">Pins are placed at city or campus level, not exact addresses. <span id="org-nopin"></span></p>
+          </div>
+          <ul class="org-list" id="org-list"></ul>
+        </div>
+
+        <div class="orgs-submit">
+          <p><strong>Don't see your organization here?</strong> Send the details and it will be added after a quick review.</p>
+          <button type="button" class="btn" id="org-submit-open"><span class="btn-label">Submit an organization</span></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="org-dialog" id="org-dialog" aria-labelledby="org-dialog-title">
+    <form id="org-form" method="dialog">
+      <h2 id="org-dialog-title">Submit an organization</h2>
+      <p class="form-hint">Every submission is reviewed by hand before it appears in the directory.</p>
+
+      <label>Organization name *
+        <input name="org_name" required maxlength="200" autocomplete="off">
+      </label>
+      <label>Type
+        <select name="org_type" id="org-type-select"></select>
+      </label>
+      <label>City or place
+        <input name="org_place" maxlength="200" placeholder="e.g. Davao City" autocomplete="off">
+      </label>
+      <label>Website or Facebook page
+        <input name="org_link" type="url" maxlength="400" placeholder="https://" autocomplete="off">
+      </label>
+      <label>What do they do?
+        <textarea name="org_about" rows="3" maxlength="1000"></textarea>
+      </label>
+      <label>Your name (optional)
+        <input name="contact_name" maxlength="200" autocomplete="name">
+      </label>
+      <label>Your email (optional, in case of questions)
+        <input name="contact_email" type="email" maxlength="200" autocomplete="email">
+      </label>
+      <label class="hp" aria-hidden="true">Company <input name="company" tabindex="-1" autocomplete="off"></label>
+      <input type="hidden" name="form" value="org-submission">
+
+      <p class="form-note" id="org-form-note" role="status"></p>
+      <div class="dialog-actions">
+        <button type="button" class="org-cancel">Close</button>
+        <button type="submit" class="btn"><span class="btn-label">Send for review</span></button>
+      </div>
+    </form>
+  </dialog>
+
+  <footer class="site-footer" id="contact">
+    <div class="wrap">
+      <div>
+        <h2>Say hello</h2>
+        <p>Questions about the sky are always welcome, including the ones you think are too basic.</p>
+        <p><a href="contact.html">Send a message</a></p>
+      </div>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#lab">Lab</a></li>
+          <li><a href="resources.html">Resources</a></li>
+        </ul>
+      </nav>
+      <p class="footer-small">© 2026 Egg Nebula. Made in the Philippines.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="data/organizations.js"></script>
+  <script src="js/orgs.js"></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

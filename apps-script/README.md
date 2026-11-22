@@ -39,3 +39,19 @@ The "Subscribe" form posts to a small Google Apps Script. The script adds a row
   ignores; invalid emails are rejected too.
 - **Privacy:** you're collecting personal data, so say what it's used for near
   the form (e.g. "We'll only email you when there's something new").
+
+## Organization suggestions
+
+The "Submit an organization" form on `organizations.html` posts to the same web app.
+The script adds each suggestion to an `Org submissions` tab with Status `Pending`.
+Review it, set Status to `Approved` or `Rejected`, and add approved ones to
+`data/organizations.js` by hand. **After pulling this change, redeploy the script**
+(Deploy > Manage deployments > pencil icon > Version: New version > Deploy), or the
+new tab won't be created and submissions will be treated as newsletter sign-ups and rejected.
+
+## Contact form
+
+The form on `contact.html` posts to the same web app. Messages land in a `Messages` tab
+(timestamp, name, email, organization, purpose, message). Redeploy the script after
+updating `Code.gs`. Tip: **Tools > Notification settings** in the Sheet can email you
+when a row is added.

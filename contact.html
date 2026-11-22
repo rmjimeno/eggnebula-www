@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact · Egg Nebula</title>
+  <meta name="description" content="Questions, ideas or want to collaborate on astronomy communication? Send Egg Nebula a message.">
+  <link rel="icon" href="assets/logo-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/contact.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Egg Nebula, home">
+        <img src="assets/logo-mark.png" alt="" width="480" height="309">
+        <span>Egg Nebula</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#lab">Lab</a></li>
+          <li class="has-sub">
+            <a href="resources.html">Resources</a>
+            <ul class="sub">
+              <li><a href="resources.html">Illustrated guides</a></li>
+              <li><a href="organizations.html">Organizations</a></li>
+            </ul>
+          </li>
+          <li><a href="contact.html" aria-current="page">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head">
+      <div class="stars" data-count="70"></div>
+      <div class="wrap">
+        <p class="eyebrow">Contact</p>
+        <h1>Say hello</h1>
+        <p class="lead">Questions about the sky are always welcome, including the ones you think are too basic. Ideas and collaborations too.</p>
+      </div>
+    </section>
+
+    <section class="contact">
+      <div class="wrap">
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="row">
+            <label>First name *
+              <input name="first_name" required maxlength="100" autocomplete="given-name">
+            </label>
+            <label>Last name *
+              <input name="last_name" required maxlength="100" autocomplete="family-name">
+            </label>
+          </div>
+          <label>Email *
+            <input name="email" type="email" required maxlength="200" autocomplete="email">
+            <span class="hint">So there's a way to write back.</span>
+          </label>
+          <label>Organization <span class="opt">(optional)</span>
+            <input name="organization" maxlength="200" autocomplete="organization">
+          </label>
+          <label>Purpose *
+            <select name="purpose" required>
+              <option value="">Choose one</option>
+              <option>General question</option>
+              <option>Astronomy question</option>
+              <option>Collaboration or partnership</option>
+              <option>School or educator request</option>
+              <option>Media or press</option>
+              <option>Correction or organization suggestion</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>Message *
+            <textarea name="message" required rows="6" maxlength="3000"></textarea>
+          </label>
+          <label class="hp" aria-hidden="true">Company <input name="company" tabindex="-1" autocomplete="off"></label>
+          <input type="hidden" name="form" value="contact">
+
+          <p class="form-note" id="contact-note" role="status"></p>
+          <button type="submit" class="btn"><span class="btn-label">Send message</span></button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="wrap">
+      <div>
+        <h2>Egg Nebula</h2>
+        <p>Bringing the stars closer to Filipinos.</p>
+      </div>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#lab">Lab</a></li>
+          <li><a href="resources.html">Resources</a></li>
+        </ul>
+      </nav>
+      <p class="footer-small">© 2026 Egg Nebula. Made in the Philippines.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/contact.js" defer></script>
+</body>
+</html>
