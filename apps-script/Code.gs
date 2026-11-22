@@ -21,6 +21,9 @@ function doPost(e) {
     // Organization directory suggestions go to their own tab, to be reviewed by hand.
     if (p.form === "org-submission") return saveOrgSubmission(p);
 
+    // Contact form messages go to their own tab.
+    if (p.form === "contact") return saveContactMessage(p);
+
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return reply({ result: "error", error: "invalid email" });
     }
@@ -64,6 +67,26 @@ function saveOrgSubmission(p) {
     new Date(), "Pending", org, clean(p.org_type, 60), clean(p.org_place, 200), clean(p.org_link, 400),
     clean(p.org_about, 1000), clean(p.contact_name, 200), email
   ]);
+  return reply({ result: "success" });
+}
+
+// Contact form messages. Called from doPost, which already holds the script lock.
+const CONTACT_SHEET_NAME = "Messages";
+const CONTACT_HEADERS = ["Timestamp", "First name", "Last name", "Email", "Organization", "Purpose", "Message"];
+
+function saveContactMessage(p) {
+  const clean = (v, n) => String(v || "").trim().slice(0, n);
+  const email = clean(p.email, 200).toLowerCase();
+  const first = clean(p.first_name, 100);
+  const last = clean(p.last_name, 100);
+  const message = clean(p.message, 3000);
+  if (!first || !last || !message) return reply({ result: "error", error: "missing fields" });
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return reply({ result: "error", error: "invalid email" });
+
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName(CONTACT_SHEET_NAME) || ss.insertSheet(CONTACT_SHEET_NAME);
+  if (sheet.getLastRow() === 0) sheet.appendRow(CONTACT_HEADERS);
+  sheet.appendRow([new Date(), first, last, email, clean(p.organization, 200), clean(p.purpose, 80), message]);
   return reply({ result: "success" });
 }
 

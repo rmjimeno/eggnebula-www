@@ -1,0 +1,20 @@
+/* Contact form */
+.contact { padding: clamp(28px, 5vw, 56px) 0 clamp(56px, 9vw, 110px); }
+.contact-form { max-width: 620px; display: grid; gap: 18px; }
+.contact-form .row { display: grid; gap: 18px; grid-template-columns: 1fr; }
+@media (min-width: 560px) { .contact-form .row { grid-template-columns: 1fr 1fr; } }
+.contact-form label { display: block; font-size: .95rem; }
+.contact-form .opt, .contact-form .hint { color: var(--muted); font-size: .85rem; }
+.contact-form .hint { display: block; margin-top: 4px; }
+.contact-form input, .contact-form select, .contact-form textarea {
+  display: block; width: 100%; margin-top: 6px; padding: 12px 14px; font: inherit; color: var(--text);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+}
+.contact-form textarea { resize: vertical; min-height: 140px; }
+.contact-form input:focus-visible, .contact-form select:focus-visible, .contact-form textarea:focus-visible {
+  outline: 2px solid var(--teal); outline-offset: 2px;
+}
+.contact-form [aria-invalid="true"] { border-color: var(--pink); }
+.contact-form .hp { position: absolute; left: -9999px; }
+.contact-form .form-note { min-height: 1.4em; margin: 0; }
+.contact-form .btn { justify-self: start; }
