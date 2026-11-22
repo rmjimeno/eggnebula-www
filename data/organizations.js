@@ -7,7 +7,7 @@
  * Fields
  *   id        unique slug
  *   name      display name
- *   type      one of: government | observatory | research | club | online | student | highschool | education | business | network
+ *   type      one of: government | observatory | research | club | online | student | highschool | business | network
  *   region    short place label shown on the card
  *   coords    [lat, lng] or null (null = no pin, e.g. nationwide or online groups)
  *   precision "exact" | "area"  (area = pin is city/campus level, not a street address)
@@ -27,7 +27,6 @@ window.ORG_TYPES = {
   club: "Astronomy club",
   online: "Online community",
   student: "Student org",
-  education: "Public education",
   network: "Network",
   highschool: "High school",
   business: "Business & tourism"
@@ -50,7 +49,7 @@ window.ORGS = [
   {
     id: "pagasa-planetarium",
     name: "PAGASA Planetarium",
-    type: "education",
+    type: "government",
     region: "Science Garden, Quezon City",
     coords: [14.6491, 121.0440],
     precision: "area",
@@ -63,7 +62,7 @@ window.ORGS = [
   {
     id: "pagasa-mindanao-planetarium",
     name: "PAGASA Mindanao Planetarium",
-    type: "education",
+    type: "government",
     region: "Misamis Oriental",
     coords: [8.4542, 124.6319],
     precision: "area",

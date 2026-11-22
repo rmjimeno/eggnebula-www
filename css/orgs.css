@@ -53,7 +53,10 @@
 .org-type[data-type="research"] { background: #d9c8f2; }
 .org-type[data-type="club"] { background: #f4cfe6; }
 .org-type[data-type="student"] { background: #fbf4d3; }
-.org-type[data-type="education"] { background: #c6dcf1; }
+.org-type[data-type="observatory"] { background: #c6dcf1; }
+.org-type[data-type="online"] { background: #e5deee; }
+.org-type[data-type="business"] { background: #f6e0c4; }
+.org-type[data-type="highschool"] { background: #d6ecd2; }
 .org-unverified { border: 1px dashed var(--muted); color: var(--muted); }
 .org-tags { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 10px 0; }
 .org-tags li { font-size: .8rem; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; }

@@ -28,7 +28,7 @@
   orgs.forEach((o) => {
     if (!o.coords) return;
     const m = L.marker(o.coords, { icon: pin, title: o.name, keyboard: true })
-      .bindPopup(`<strong>${esc(o.name)}</strong><br>${esc(o.region)}<br><a href="#${esc(o.id)}" data-focus="${esc(o.id)}">See in list</a>`);
+      .bindPopup(`<strong>${esc(o.name)}</strong><br>${esc(o.region)}<br><a href="#${esc(o.id)}" data-focus="${esc(o.id)}">See in list</a>${o.url ? ` · <a href="${esc(o.url)}" target="_blank" rel="noopener">Website ↗</a>` : ""}`);
     m.on("click", () => highlight(o.id, false));
     markers.set(o.id, m);
   });
