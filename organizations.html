@@ -79,9 +79,51 @@
           </div>
           <ul class="org-list" id="org-list"></ul>
         </div>
+
+        <div class="orgs-submit">
+          <p><strong>Don't see your organization here?</strong> Tell us about it and we'll add it after a quick review.</p>
+          <button type="button" class="btn" id="org-submit-open"><span class="btn-label">Submit an organization</span></button>
+        </div>
       </div>
     </section>
   </main>
+
+  <dialog class="org-dialog" id="org-dialog" aria-labelledby="org-dialog-title">
+    <form id="org-form" method="dialog">
+      <h2 id="org-dialog-title">Submit an organization</h2>
+      <p class="form-hint">We review every submission by hand before it appears in the directory.</p>
+
+      <label>Organization name *
+        <input name="org_name" required maxlength="200" autocomplete="off">
+      </label>
+      <label>Type
+        <select name="org_type" id="org-type-select"></select>
+      </label>
+      <label>City or place
+        <input name="org_place" maxlength="200" placeholder="e.g. Davao City" autocomplete="off">
+      </label>
+      <label>Website or Facebook page
+        <input name="org_link" type="url" maxlength="400" placeholder="https://" autocomplete="off">
+      </label>
+      <label>What do they do?
+        <textarea name="org_about" rows="3" maxlength="1000"></textarea>
+      </label>
+      <label>Your name (optional)
+        <input name="contact_name" maxlength="200" autocomplete="name">
+      </label>
+      <label>Your email (optional, in case we have questions)
+        <input name="contact_email" type="email" maxlength="200" autocomplete="email">
+      </label>
+      <label class="hp" aria-hidden="true">Company <input name="company" tabindex="-1" autocomplete="off"></label>
+      <input type="hidden" name="form" value="org-submission">
+
+      <p class="form-note" id="org-form-note" role="status"></p>
+      <div class="dialog-actions">
+        <button type="button" class="org-cancel">Close</button>
+        <button type="submit" class="btn"><span class="btn-label">Send for review</span></button>
+      </div>
+    </form>
+  </dialog>
 
   <footer class="site-footer" id="contact">
     <div class="wrap">

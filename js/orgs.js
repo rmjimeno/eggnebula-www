@@ -101,4 +101,33 @@
   });
 
   render();
+
+  // ---- Submit an organization ------------------------------------------
+  const dialog = $("org-dialog"), form = $("org-form"), note = $("org-form-note"), select = $("org-type-select");
+  select.innerHTML = '<option value="">Not sure</option>' + typeKeys.map((k) => `<option value="${esc(types[k])}">${esc(types[k])}</option>`).join("");
+
+  $("org-submit-open").addEventListener("click", () => { note.textContent = ""; dialog.showModal(); });
+  dialog.querySelector(".org-cancel").addEventListener("click", () => dialog.close());
+  dialog.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    // Same Apps Script web app as the newsletter (const lives in js/main.js).
+    const endpoint = typeof NEWSLETTER_ENDPOINT !== "undefined" ? NEWSLETTER_ENDPOINT : "";
+    if (!endpoint) { note.textContent = "Submissions aren't open yet. Please check back soon."; return; }
+    const button = form.querySelector("button[type='submit']");
+    button.disabled = true;
+    note.textContent = "Sending…";
+    try {
+      const res = await fetch(endpoint, { method: "POST", body: new FormData(form) });
+      const data = await res.json();
+      if (data.result !== "success") throw new Error(data.error || "rejected");
+      form.reset();
+      note.textContent = "Thank you! We'll review it and add it to the directory.";
+    } catch {
+      note.textContent = "That didn't go through. Please try again in a bit.";
+    } finally {
+      button.disabled = false;
+    }
+  });
 })();
