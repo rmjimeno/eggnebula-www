@@ -1021,14 +1021,17 @@ a.card:hover .card-link {
   height: auto;
   cursor: grab;
   touch-action: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .stargazers .telescope.is-dragging {
   cursor: grabbing;
 }
 
+.stargazers .telescope:focus,
 .stargazers .telescope:focus-visible {
-  outline-offset: 0;
+  outline: none;
 }
 
 /* The tube pivots on the tripod head; --tilt is set by js/main.js. */
