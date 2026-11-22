@@ -47,6 +47,19 @@ window.ORGS = [
     verified: false
   },
   {
+    id: "pagasa-observatory",
+    name: "PAGASA Observatory",
+    type: "observatory",
+    region: "UP Diliman, Quezon City",
+    coords: [14.6515, 121.0680],
+    precision: "area",
+    about: "A second DOST-PAGASA observatory in UP Diliman, separate from the Astronomical Observatory.",
+    offers: ["Observatory"],
+    url: "https://www.pagasa.dost.gov.ph",
+    source: "Added by site owner",
+    verified: false
+  },
+  {
     id: "pagasa-planetarium",
     name: "PAGASA Planetarium",
     type: "government",
