@@ -58,14 +58,12 @@
     const locate = o.coords ? `<button type="button" class="org-locate" data-locate="${esc(o.id)}">Show on map</button>` : `<span class="org-nomap">No fixed location</span>`;
     const site = o.url ? `<a class="org-site" href="${esc(o.url)}" target="_blank" rel="noopener">Website ↗</a>` : "";
     return `<li class="org-card" id="${esc(o.id)}" data-type="${esc(o.type)}">
-      <div class="org-top"><span class="org-type" data-type="${esc(o.type)}">${esc(types[o.type] || o.type)}</span>
-        ${o.verified ? "" : '<span class="org-unverified" title="Not yet confirmed with the organization">Unconfirmed</span>'}</div>
+      <div class="org-top"><span class="org-type" data-type="${esc(o.type)}">${esc(types[o.type] || o.type)}</span></div>
       <h3>${esc(o.name)}</h3>
       <p class="org-region">${esc(o.region)}</p>
       <p>${esc(o.about)}</p>
       <ul class="org-tags">${(o.offers || []).map((t) => `<li>${esc(t)}</li>`).join("")}</ul>
       <div class="org-actions">${locate}${site}</div>
-      <p class="org-source">Source: ${esc(o.source || "n/a")}</p>
     </li>`;
   }
 

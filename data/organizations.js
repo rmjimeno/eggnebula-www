@@ -7,7 +7,7 @@
  * Fields
  *   id        unique slug
  *   name      display name
- *   type      one of: government | research | club | student | highschool | education | business | network
+ *   type      one of: government | observatory | research | club | online | student | highschool | education | business | network
  *   region    short place label shown on the card
  *   coords    [lat, lng] or null (null = no pin, e.g. nationwide or online groups)
  *   precision "exact" | "area"  (area = pin is city/campus level, not a street address)
@@ -22,8 +22,10 @@
  */
 window.ORG_TYPES = {
   government: "Government",
-  research: "Research & observatory",
-  club: "Amateur club",
+  observatory: "Observatory",
+  research: "Research",
+  club: "Astronomy club",
+  online: "Online community",
   student: "Student org",
   education: "Public education",
   network: "Network",
@@ -35,7 +37,7 @@ window.ORGS = [
   {
     id: "pagasa-astronomical-observatory",
     name: "PAGASA Astronomical Observatory",
-    type: "government",
+    type: "observatory",
     region: "UP Diliman, Quezon City",
     coords: [14.6537, 121.0705],
     precision: "area",
@@ -86,7 +88,7 @@ window.ORGS = [
   {
     id: "manila-observatory",
     name: "Manila Observatory",
-    type: "research",
+    type: "observatory",
     region: "Ateneo campus, Quezon City",
     coords: [14.6395, 121.0780],
     precision: "area",
@@ -228,7 +230,7 @@ window.ORGS = [
   {
     id: "astrophotography-philippines",
     name: "Astrophotography Philippines",
-    type: "club",
+    type: "online",
     region: "Online / nationwide",
     coords: null,
     precision: "area",
@@ -345,11 +347,11 @@ window.ORGS = [
   {
     "id": "science-centrum",
     "name": "Science Centrum",
-    "type": "business",
-    "region": "Philippines",
-    "coords": null,
+    "type": "observatory",
+    "region": "South Drive, Baguio City",
+    "coords": [16.4010, 120.5990],
     "precision": "area",
-    "about": "Science education center with a planetarium. Location to be confirmed.",
+    "about": "Science education center listed with an observatory at South Drive, Baguio City. Details of public access still need confirming.",
     "offers": [
       "Planetarium",
       "Science education"
@@ -534,7 +536,7 @@ window.ORGS = [
   {
     "id": "astropinas",
     "name": "AstroPinas",
-    "type": "club",
+    "type": "online",
     "region": "Online / nationwide",
     "coords": null,
     "precision": "area",
@@ -549,7 +551,7 @@ window.ORGS = [
   {
     "id": "filipino-astro-community",
     "name": "Filipino Astro Community",
-    "type": "club",
+    "type": "online",
     "region": "Online / nationwide",
     "coords": null,
     "precision": "area",
@@ -564,7 +566,7 @@ window.ORGS = [
   {
     "id": "ph-astronomy-exchange",
     "name": "Philippine Astronomy Exchange",
-    "type": "club",
+    "type": "online",
     "region": "Online / nationwide",
     "coords": null,
     "precision": "area",
@@ -579,7 +581,7 @@ window.ORGS = [
   {
     "id": "ph-astronomy-forum",
     "name": "Philippine Astronomy Forum",
-    "type": "club",
+    "type": "online",
     "region": "Online / nationwide",
     "coords": null,
     "precision": "area",
@@ -915,6 +917,26 @@ window.ORGS = [
     ],
     "url": "https://www.facebook.com/thereachingastronomy",
     "source": "SGAC Philippines links page",
+    "verified": false
+  },
+  {
+    "id": "up-nismed-observatory",
+    "name": "UP NISMED Observatory",
+    "type": "observatory",
+    "region": "UP Diliman, Quezon City",
+    "coords": [
+      14.6535,
+      121.069
+    ],
+    "precision": "area",
+    "about": "Observatory on the roof deck of the UP NISMED Science Teacher Training Center, with a 40 cm reflector in a motorized dome, active since 1990. Mainly serves schools and educational groups by request, plus open events such as Buwan at Bituin.",
+    "offers": [
+      "Telescope viewing",
+      "School sessions",
+      "By request"
+    ],
+    "url": "https://nismed.upd.edu.ph/observatory/",
+    "source": "UP NISMED website",
     "verified": false
   }
 ];
